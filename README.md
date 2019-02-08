@@ -5,7 +5,7 @@ InteLease quickly and accurately summarizes and abstracts your legal documents.
 
 This [Box Skill](https://www.box.com/skills) allows InteLease to automatically summarize the user's Box documents, with no effort from the user.
 
-![Alt Text](screenshots/example_doc.png)
+![Alt Text](screenshots/document.png)
 
 ## Quick Run
 
@@ -19,9 +19,9 @@ Install [Serverless](https://serverless.com/framework/docs/providers/google/), w
 
 The Serverless documentation also walks through how to get the credentials for [Google Cloud Platform](https://cloud.google.com/).
 
-#### Node Package Manager
+#### Node.js
 
-Install [NPM](https://www.npmjs.com/).
+Install [Node.js](https://nodejs.org/en/), along with a corresponding [Node Package Manager](https://www.npmjs.com/).
 
 ### Deploy the Skill
 
@@ -39,7 +39,11 @@ Get the node modules for the Skills kit library.
 
 Update your Google Cloud account details and point to your Google credentials json file, in `serverless.yml`.
 
+![Alt Text](screenshots/google_creds.png)
+
 Add your InteLease OAuth2.0 access token to `serverless.yml`.
+
+![Alt Text](screenshots/itls_creds.png)
 
 Deploy the serverless function.
 
