@@ -1,4 +1,4 @@
-#InteLease Box Skill
+# InteLease Box Skill
 
 [InteLease](https://intelease.com) is a an automatic due diligence platform.
 InteLease quickly and accurately summarizes and abstracts your legal documents.
@@ -11,15 +11,15 @@ This [Box Skill](https://www.box.com/skills) allows InteLease to automatically s
 
 ### Dependencies
 
-####Serverless
+#### Serverless
 
 Install [Serverless](https://serverless.com/framework/docs/providers/google/), with the provider being  [Google Cloud Functions](https://cloud.google.com/functions/).
 
-####Google Cloud Credentials
+#### Google Cloud Credentials
 
 The Serverless documentation also walks through how to get the credentials for [Google Cloud Platform](https://cloud.google.com/).
 
-####Node Package Manager
+#### Node Package Manager
 
 Install [NPM](https://www.npmjs.com/).
 
@@ -50,13 +50,13 @@ Deploy the serverless function.
 This Skill is triggered when the user uploads, moves, or copies a PDF file in the relevant Box folders.
 The skill is implemented by 2 serverless functions, instead of 1 long-running function.
 
-**Send Box File to InteLease**
+**1) Send Box File to InteLease**
 
 This function is called by the Box skill initially.
 It sends the Box file and relevant metadata to InteLease for processing. 
 This function exits after sending the data to InteLease.
 
-**Write InteLease Summary to Box Skill Cards**
+**2) Write InteLease Summary to Box Skill Cards**
 
 This function is called by InteLease, after it finishes automatically processing a Box file (in less than 10 minutes).
 It retrieves the provisions that InteLease found and writes them onto [Transcript Cards](https://github.com/box/box-skills-kit-nodejs/tree/master/skills-kit-library#skillswriter) for the Box file.
