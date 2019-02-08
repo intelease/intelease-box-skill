@@ -1,0 +1,40 @@
+service: process-box-file # NOTE: Don't put the word "google" in here
+
+provider:
+  name: google
+  runtime: nodejs8
+  project: # <TODO: INSERT_GCLOUD_PROJECT_NAME>
+  # the path to the credentials file needs to be absolute
+  credentials: # <TODO: INSERT_PATH_TO_GOOGLE_CLOUD_CREDENTIALS_JSON_FILE>
+  region: # <TODO: INSERT_GCLOUD_REGION>
+
+plugins:
+  - serverless-google-cloudfunctions
+
+# needs more granular excluding in production as only the serverless provider npm
+# package should be excluded (and not the whole node_modules directory)
+package:
+  include:
+    - node_modules/**
+  exclude:
+    #    - node_modules/**
+    - .gitignore
+    - .git/**
+
+custom:
+  variables:
+    itlsAuthToken: # <TODO: INSERT_INTELEASE_OAUTH_ACCESS_TOKEN_HERE>
+
+functions:
+  processBoxFile:
+    handler: sendBoxFileToItls
+    timeout: 30s # takes 11s for a 25MB file
+    events:
+      - http: path
+    environment:
+      INTELEASE_AUTH_TOKEN: ${self:custom.variables.itlsAuthToken}
+
+  writeBoxCards:
+    handler: processItlsAbstract
+    events:
+      - http: path
