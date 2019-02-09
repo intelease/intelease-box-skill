@@ -56,9 +56,10 @@ custom:
 ```
 
 Deploy the serverless functions.
-After this, you will see both invocation URLs--the one that Box needs to send data to and the one that InteLease needs to send data to.
 
 `sls deploy -v`
+
+After this completes, you will see both invocation URLs--the one that Box needs to send data to and the one that InteLease needs to send data to.
 
 ### Set the Invocation URLs
 
@@ -71,7 +72,7 @@ Insert the URL endpoint for the `processBoxFile` function here.
 
 #### InteLease
 
-To tell InteLease where to return its processed document summary, insert the URL endpoint for the `writeBoxCards` function here.
+Tell InteLease where to return its processed document summary, by inserting, in `serverless.yml`, the URL endpoint for the `writeBoxCards` function.
 
 ```yaml
 custom:
