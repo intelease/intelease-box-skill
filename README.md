@@ -1,6 +1,8 @@
 # InteLease Box Skill
 
-[InteLease](https://intelease.com) is a an automatic due diligence platform, which quickly and accurately summarizes and abstracts your legal documents.
+[InteLease](https://intelease.com) is a an automatic due diligence platform, which quickly summarizes and abstracts your legal documents.
+It utilizes natural language processing and machine learning algorithms to accurately unlock structured information from documents.
+InteLease users get accurate abstracts for their legal documents, up to 6 times faster than without it.
 
 This [Box Skill](https://www.box.com/skills) allows InteLease to automatically summarize the user's Box PDF documents, with no effort from the user.
 
@@ -10,17 +12,14 @@ This [Box Skill](https://www.box.com/skills) allows InteLease to automatically s
 
 ### Dependencies
 
-#### Serverless
+Serverless - Install [Serverless](https://serverless.com/framework/docs/providers/google/guide/installation/) globally, with the provider being Google Cloud Functions.
 
-Install [Serverless](https://serverless.com/framework/docs/providers/google/guide/installation/) globally, with the provider being Google Cloud Functions.
+Google Cloud credentials - The Serverless documentation also walks through how to get the Google Cloud credentials.
 
-#### Google Cloud Credentials
+Node.js - As part of the Serverless installation, also will need to install Node.
 
-The Serverless documentation also walks through how to get the Google Cloud credentials.
+InteLease access token - InteLease does not offer a self-service API, so please email us directly at <info@intelease.com> to set up an account.
 
-#### Node.js
-
-As part of the Serverless installation, also will need to install Node.
 
 ### Deploy the Skill
 
@@ -106,19 +105,14 @@ This function exits after writing the Box skill cards.
 
 ### Who might find this skill useful? 
 
-The people that would find this skill most helpful would be lawyers, paralegals, or executives at companies with large amounts of legal documents to review.
-Such institutions can include law firms, REITS, government offices, etc.
+The people that would find this skill most helpful would be lawyers, paralegals, or companies with substantial legal documents to review.
+Such institutions include law firms, REITS, government offices, large companies, etc.
 
 However, anyone with legal documents stored in Box can use this skill.
 Purchasing a house? Quickly get a summary of the associated legal documents without spending thousands in legal fees.
 
-### How can I get the InteLease access token?
-
-InteLease does not offer a public API, so please reach out to InteLease for partnership.
-You can email us directly at <info@intelease.com>.
-
 ### What actionable insights does this skill provide for my documents?
 
-The first card InteLease provides is titled "InteLease Metadata", which shows the Box user at least the InteLease abstraction link where the user can interactively review this document's summary himself.
-The rest of the cards are based on the user's own choice on InteLease of the provisions he wants on his summary form.
+The first Skill card provided is titled "InteLease Metadata"; it shows the Box user the abstraction link where the user can interactively review this document's summary himself.
+The rest of the cards are based on the user's own choice on InteLease of the provisions he wants extracted on his summary form.
 The user can choose from common existing forms, or create own custom form from hundreds of existing or new provisions.
