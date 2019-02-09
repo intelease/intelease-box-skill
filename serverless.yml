@@ -5,7 +5,7 @@ provider:
   runtime: nodejs8
   project: # <TODO: INSERT_GCLOUD_PROJECT_NAME>
   # the path to the credentials file needs to be absolute
-  credentials: # <TODO: INSERT_PATH_TO_GOOGLE_CLOUD_CREDENTIALS_JSON_FILE>
+  credentials: # <TODO: INSERT_PATH_TO_GCLOUD_CREDENTIALS_JSON_FILE>
   region: # <TODO: INSERT_GCLOUD_REGION>
 
 plugins:
@@ -23,7 +23,8 @@ package:
 
 custom:
   variables:
-    itlsAuthToken: # <TODO: INSERT_INTELEASE_OAUTH_ACCESS_TOKEN_HERE>
+    itlsAuthToken: # <TODO: INSERT_INTELEASE_OAUTH_ACCESS_TOKEN>
+    itlsRequestUrl: TODO # <TODO: INSERT_WRITE_BOX_CARDS_URL>
 
 functions:
   processBoxFile:
@@ -33,6 +34,7 @@ functions:
       - http: path
     environment:
       INTELEASE_AUTH_TOKEN: ${self:custom.variables.itlsAuthToken}
+      INTELEASE_REQUEST_URL: ${self:custom.variables.itlsRequestUrl}
 
   writeBoxCards:
     handler: processItlsAbstract

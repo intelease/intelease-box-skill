@@ -2,7 +2,7 @@
 
 [InteLease](https://intelease.com) is a an automatic due diligence platform, which quickly and accurately summarizes and abstracts your legal documents.
 
-This [Box Skill](https://www.box.com/skills) allows InteLease to automatically summarize the user's Box documents, with no effort from the user.
+This [Box Skill](https://www.box.com/skills) allows InteLease to automatically summarize the user's Box PDF documents, with no effort from the user.
 
 ![Alt Text](screenshots/on_background.png)
 
@@ -12,15 +12,15 @@ This [Box Skill](https://www.box.com/skills) allows InteLease to automatically s
 
 #### Serverless
 
-Install [Serverless](https://serverless.com/framework/docs/providers/google/), with the provider being  [Google Cloud Functions](https://cloud.google.com/functions/).
+Install [Serverless](https://serverless.com/framework/docs/providers/google/guide/installation/) globally, with the provider being Google Cloud Functions.
 
 #### Google Cloud Credentials
 
-The Serverless documentation also walks through how to get the credentials for [Google Cloud Platform](https://cloud.google.com/).
+The Serverless documentation also walks through how to get the Google Cloud credentials.
 
 #### Node.js
 
-Install [Node.js](https://nodejs.org/en/), along with a corresponding [Node Package Manager](https://www.npmjs.com/).
+As part of the Serverless installation, also will need to install Node.
 
 ### Deploy the Skill
 
@@ -55,13 +55,38 @@ custom:
     itlsAuthToken: # <TODO: INSERT_INTELEASE_OAUTH_ACCESS_TOKEN>
 ```
 
-Deploy the serverless function.
+Deploy the serverless functions.
+After this, you will see both invocation URLs--the one that Box needs to send data to and the one that InteLease needs to send data to.
+
+`sls deploy -v`
+
+### Set the Invocation URLs
+
+Finally, the last steps are to configure the invocation URLs.
+
+#### Box
+
+This is [how to configure your Box skill](https://developer.box.com/docs/configure-a-box-skill) with its invocation URL, in Box.
+Insert the URL endpoint for the `processBoxFile` function here.
+
+#### InteLease
+
+To tell InteLease where to return its processed document summary, insert the URL endpoint for the `writeBoxCards` function here.
+
+```yaml
+custom:
+  variables:
+    ...
+    itlsRequestUrl: TODO # <TODO: INSERT_INTELEASE_REQUEST_URL>
+```
+
+And now, re-deploy the functions.
 
 `sls deploy -v`
 
 ## Architecture
 
-This Skill is triggered when the user uploads, moves, or copies a PDF file in the relevant Box folders.
+This Skill is triggered when the user uploads, moves, or copies a `PDF` file in the relevant Box folders.
 The skill is implemented by 2 serverless functions, instead of 1 long-running function.
 
 **1) Send Box File to InteLease**

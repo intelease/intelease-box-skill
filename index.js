@@ -28,18 +28,16 @@ async function processSkill(body) {
   try {
     const filesReader = new FilesReader(JSON.stringify(body));
     const fileContext = filesReader.getFileContext();
-    const fileId = fileContext.fileId;
     const fileName = filesReader.fileName;
-    const fileURL = fileContext.fileDownloadURL;
     skillsWriter = new SkillsWriter(fileContext);
     skillsWriter.saveProcessingCard();
-    console.log('getting content base 64 for filename: ' + fileName);
+    console.log('Getting content base 64 for fileName: ' + fileName + ', fileId: ' + body.source.id);
     const base64File = await filesReader.getContentBase64();
     const keyValues = {};
     keyValues.boxEmail = body.event.created_by.login;
     keyValues.writeAccessToken = body.token.write.access_token;
     keyValues.readAccessToken = body.token.read.access_token;
-    keyValues.skillId = body.skill.id; // equals "2058"
+    keyValues.skillId = body.skill.id;
     keyValues.requestId = body.id;
     keyValues.fileId = body.source.id;
     await sendToIntelease(filesReader, base64File, keyValues);
@@ -59,7 +57,7 @@ async function processSkill(body) {
  */
 async function sendToIntelease(filesReader, base64File, keyValues) {
   const intelease = new Intelease();
-  const fileName = filesReader.fileName;
+  console.log('Sending fileName: ' + filesReader.fileName + ', fileId: ' + keyValues.fileId + ' to InteLease');
   const uploadedFile = await intelease.uploadFileToIntelease(filesReader, base64File, keyValues);
 }
 
@@ -86,9 +84,9 @@ exports.processItlsAbstract = (request, response) => {
  */
 async function processAbstract(body) {
   try {
-    const skillId = "2058";
     const boxInfo = body.boxInfo;
-    skillsWriter = new SkillsWriter(boxInfo.requestId, skillId, boxInfo.fileId, boxInfo.writeAccessToken);
+    console.log('Writing summary for Box fileId: ' + boxInfo.fileId);
+    skillsWriter = new SkillsWriter(boxInfo.requestId, boxInfo.skillId, boxInfo.fileId, boxInfo.writeAccessToken);
 
     // Process Intelease JSON object and attach Box Skills card as metadata
     let cards = populateMetadataCards(body.provisionGroups);

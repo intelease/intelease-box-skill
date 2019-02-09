@@ -11,6 +11,7 @@ class Intelease {
    */
   constructor() {
     this.itlsAuthToken = `${process.env.INTELEASE_AUTH_TOKEN}`;
+    this.itlsRequestUrl = `${process.env.INTELEASE_REQUEST_URL}`;
   }
 
   /**
@@ -32,7 +33,8 @@ class Intelease {
           filename: fileName,
           contentType: 'application/pdf'
         }
-      }
+      },
+      requestUrl: `${this.itlsRequestUrl}`
     };
     const thisKeys = Object.keys(keyValues);
     for (let idx = 0; idx < thisKeys.length; idx++) {
@@ -45,7 +47,6 @@ class Intelease {
       url: FILES_API,
       headers: {
         'Content-Type': 'multipart/form-data',
-        'Access-Control-Allow-Origin': '*',
         'Authorization': `Bearer ${this.itlsAuthToken}`
       },
       formData: thisFormData
