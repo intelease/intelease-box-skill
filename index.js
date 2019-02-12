@@ -98,49 +98,20 @@ async function processAbstract(body) {
   }
 }
 
-/**
- * Populate the Transcript cards with data sent from InteLease.
- *
- * @param inteleaseMetadata - the structured data obtained by InteLease
- * @returns {Array} - the list of transcript cards to be written to the Box file
- */
-function populateMetadataCards(inteleaseMetadata) {
+function populateMetadataCards(provisionGroups) {
   const cards = [];
-  // InteLease Metadata card first
-  let itlsProvisionGroup = 'InteLease Metadata';
-  if (inteleaseMetadata[itlsProvisionGroup]) {
-    let cardTopics = [];
-    const metadata = Object.keys(inteleaseMetadata[itlsProvisionGroup]);
-    for (let provIdx = 0; provIdx < metadata.length; provIdx++) {
-      const provisionName = metadata[provIdx];
-      if (inteleaseMetadata[itlsProvisionGroup][provisionName]) {
-        const provisionValue = inteleaseMetadata[itlsProvisionGroup][provisionName];
-        cardTopics.push({
-          text: `${provisionName}: ${provisionValue}`
-        });
-      }
-    }
-    cards.push(skillsWriter.createTranscriptsCard(cardTopics, null, itlsProvisionGroup));
-  }
-  // The remaining provision groups next.
-  const provisionGroups = Object.keys(inteleaseMetadata);
   for (let idx = 0; idx < provisionGroups.length; idx++) {
-    const provisionGroupName = provisionGroups[idx];
-    if (provisionGroupName === itlsProvisionGroup) {
-      continue;
-    }
+    const provisionGroup = provisionGroups[idx];
+    const provisionGroupName = provisionGroup['groupName'];
+    const provisions = provisionGroup['provisions'];
     let cardTopics = [];
-    if (inteleaseMetadata[provisionGroupName]) {
-      const provisions = Object.keys(inteleaseMetadata[provisionGroupName]);
-      for (let provIdx = 0; provIdx < provisions.length; provIdx++) {
-        const provisionName = provisions[provIdx];
-        if (inteleaseMetadata[provisionGroupName][provisionName]) {
-          const provisionValue = inteleaseMetadata[provisionGroupName][provisionName];
-          cardTopics.push({
-            text: `${provisionName}: ${provisionValue}`
-          });
-        }
-      }
+    for (let provIdx = 0; provIdx < provisions.length; provIdx++) {
+      const provision = provisions[provIdx];
+      const provisionName = provision['provisionName'];
+      const provisionValue = provision['provisionValue'];
+      cardTopics.push({
+        text: `${provisionName}: ${provisionValue}`
+      });
     }
     cards.push(skillsWriter.createTranscriptsCard(cardTopics, null, provisionGroupName));
   }
