@@ -98,6 +98,12 @@ async function processAbstract(body) {
   }
 }
 
+/**
+ * Populate the Transcript cards with data sent from InteLease.
+ *
+ * @param provisionGroups - the structured data obtained by InteLease
+ * @returns {Array} - the list of transcript cards to be written to the Box file
+ */
 function populateMetadataCards(provisionGroups) {
   const cards = [];
   for (let idx = 0; idx < provisionGroups.length; idx++) {
