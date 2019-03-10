@@ -1,8 +1,10 @@
 # InteLease Box Skill
 
 [InteLease](https://intelease.com) is a an automatic due diligence platform, which quickly summarizes and abstracts your legal documents.
-It utilizes natural language processing and machine learning algorithms to accurately unlock structured information from documents.
-InteLease users get accurate abstracts for their legal documents, up to 6 times faster than without it.
+It utilizes natural language processing and machine learning algorithms to accurately unlock unstructured information from documents.
+
+
+InteLease users get accurate abstracts for their legal documents, up to 6 times faster than without it. More importantly, a consistent, automated solution decreases the risk of human errors. Skipping or misunderstanding a legal clause can easily increase the risk of incurring large financial costs.
 
 This [Box Skill](https://www.box.com/skills) allows InteLease to automatically summarize the user's Box PDF documents, with no effort from the user.
 
@@ -115,4 +117,4 @@ Purchasing a house? Quickly get a summary of the associated legal documents with
 
 The first Skill card provided is titled "InteLease Metadata"; it shows the Box user the abstraction link where the user can interactively review this document's summary himself.
 The rest of the cards are based on the user's own choice on InteLease of the provisions he wants extracted on his summary form.
-The user can choose from common existing forms, or create own custom form from hundreds of existing or new provisions.
+The user can choose from common existing forms, or create his own custom form from hundreds of existing or new provisions.
